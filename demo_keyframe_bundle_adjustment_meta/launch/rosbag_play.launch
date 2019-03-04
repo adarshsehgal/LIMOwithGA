@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /media/aralab/external_drive/kittidatabase/other_datasets/lidarpluszed1_2019-02-25-18-20-41.bag"/>
+     
+        <node pkg="topic_tools" type="relay" name="vel_p" args="/velodyne_points /sensor/velodyne/cloud_euclidean" />
+        <node pkg="topic_tools" type="relay" name="left_info" args="/zed/left/camera_info /sensor/camera/color/left/camera_info" />
+        <node pkg="topic_tools" type="relay" name="left_rect" args="/zed/left/image_rect_color /sensor/camera/color/left/image_rect" />
+        <node pkg="topic_tools" type="relay" name="right_info" args="/zed/right/camera_info /sensor/camera/color/right/camera_info" />
+	<node pkg="topic_tools" type="relay" name="right_rect" args="/zed/right/image_rect_color /sensor/camera/color/right/image_rect" />
+
+<node name="image_proc" pkg="image_proc" type="image_proc" ns="left">
+ <remap from="image_raw" to="/sensor/camera/color/left/image_rect"/>
+ <!--<remap from="camera_info" to="/sensor/camera/color/left/camera_info"/>-->
+</node>
+
+<node name="image_proc" pkg="image_proc" type="image_proc" ns="right">
+ <remap from="image_raw" to="/sensor/camera/color/right/image_rect"/>
+ <!--<remap from="camera_info" to="/sensor/camera/color/right/camera_info"/>-->
+</node>
+
+<node pkg="topic_tools" type="relay" name="left_gray_info" args="/zed/left/camera_info /sensor/camera/grayscale/left/camera_info" />
+        <node pkg="topic_tools" type="relay" name="left_gray_rect" args="/left/image_mono /sensor/camera/grayscale/left/image_rect" />
+        <node pkg="topic_tools" type="relay" name="right_gray_info" args="/zed/right/camera_info /sensor/camera/grayscale/right/camera_info" />
+	<node pkg="topic_tools" type="relay" name="right_gray_rect" args="/right/image_mono /sensor/camera/grayscale/right/image_rect" />
+
+</launch>
+
