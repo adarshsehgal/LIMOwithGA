@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-        <node pkg="rosbag" type="play" name="player" output="screen" args="--clock /media/aralab/external_drive/kittidatabase/other_datasets/lidarpluszed1_2019-02-25-18-20-41.bag"/>
+        <!--<node pkg="rosbag" type="play" name="player" output="screen" args="--clock /media/aralab/external_drive/kittidatabase/other_datasets/lidarpluszed1_2019-02-25-18-20-41.bag"/>-->
      
         <node pkg="topic_tools" type="relay" name="vel_p" args="/velodyne_points /sensor/velodyne/cloud_euclidean" />
         <node pkg="topic_tools" type="relay" name="left_info" args="/zed/left/camera_info /sensor/camera/color/left/camera_info" />
